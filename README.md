@@ -1,6 +1,10 @@
-# Cinch::Toolbox
+# Cinch Toolbox
 
-TODO: Write a gem description
+This is just a gem required fro many of my plugins, it facilitates a variety of mundane operations.
+
+* URL Shortening / Expansion.
+* Webpage DOM element retrieval (via xpath or css selectors).
+* Output truncation for sanity proof channel output.
 
 ## Installation
 
@@ -15,10 +19,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cinch-toolbox
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
