@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["bhaberer@gmail.com"]
   gem.description   = %q{A gem of various methods used in many of my plugins. If you need the namespace, let me know.}
   gem.summary       = %q{Common methods used in Cinch Plugins.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/bhaberer/cinch-toolbox"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
