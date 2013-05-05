@@ -2,6 +2,7 @@
 require 'cinch-toolbox/version'
 require 'open-uri'
 require 'patron'
+require 'nokogiri'
 
 module Cinch
   module Toolbox
