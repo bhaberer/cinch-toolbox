@@ -19,6 +19,27 @@ module Cinch
       end
     end
 
+    def Toolbox.get_page_title(url)
+      # Make sure the URL is legit
+      url = URI::extract(url, ["http", "https"]).first
+
+      # If the link is to an image, extract the filename.
+      if url.match(/\.jpg|jpeg|gif|png$/)
+        # unless it's from reddit, then change the url to the gallery to get the image's caption.
+        if url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)
+          imgur_id = url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)[1]
+          url = "http://imgur.com/#{imgur_id}"
+        else
+          site = url.match(/\.([^\.]+\.[^\/]+)/)
+          return site.nil? ? "Image [#{url}]!!!" : "Image from #{site[1]}"
+        end
+      end
+
+      # Grab the element, return nothing if  the site doesn't have a title.
+      page = Nokogiri::HTML(open(url)).css('title')
+      return page.first.content.strip.gsub(/\s+/, ' ') unless page.empty?
+    end
+
     # Expand a previously shortened URL via the configured shortener
     def Toolbox.expand(url)
       shortener.get("forward.php?format=simple&shorturl=#{url}").body
@@ -73,26 +94,5 @@ module Cinch
       return short
     end
 
-    def Toolbox.get_page_title(url)
-      # Make sure the URL is legit
-      url = URI::extract(url, ["http", "https"]).first
-
-      # If the link is to an image, extract the filename.
-      if url.match(/\.jpg|jpeg|gif|png$/)
-        # unless it's from reddit, then change the url to the gallery to get the image's caption.
-        if url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)
-          imgur_id = url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)[1]
-          url = "http://imgur.com/#{imgur_id}"
-        else
-          site = url.match(/\.([^\.]+\.[^\/]+)/)
-          return site.nil? ? "Image [#{url}]!!!" : "Image from #{site[1]}"
-        end
-      end
-
-      # Grab the element, return nothing if  the site doesn't have a title.
-      debug "URL: #{url}"
-      page = Nokogiri::HTML(open(url)).css('title')
-      return page.first.content.strip.gsub(/\s+/, ' ') unless page.empty?
-    end
   end
 end
