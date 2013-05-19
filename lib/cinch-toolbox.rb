@@ -26,8 +26,7 @@ module Cinch
       # If the link is to an image, extract the filename.
       if url.match(/\.jpg|jpeg|gif|png$/)
         # unless it's from reddit, then change the url to the gallery to get the image's caption.
-        if url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)
-          imgur_id = url.match(/https?:\/\/i\.imgur\.com.+\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)[1]
+        if imgur_id = url.match(/https?:\/\/i\.imgur\.com.*\/([A-Za-z0-9]+)\.(jpg|jpeg|png|gif)/)[1]
           url = "http://imgur.com/#{imgur_id}"
         else
           site = url.match(/\.([^\.]+\.[^\/]+)/)
