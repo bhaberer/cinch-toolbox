@@ -3,8 +3,16 @@
 This is just a gem required fro many of my plugins, it facilitates a variety of mundane operations.
 
 * URL Shortening / Expansion.
+* URL Title Scraping.
 * Webpage DOM element retrieval (via xpath or css selectors).
 * Output truncation for sanity proof channel output.
+
+Note: There is a small monkey patch to OpenURI contained in this gem. It allows for redirection
+on urls that require https. For example, normally if you link to an `http://github.com/...` url on
+GitHub you will get redirected to the https version of that link, and OpenURI will lose it's shit.
+
+Note that this *only* honors redirection requests from HTTP => HTTPS and *not* HTTPS => HTTP.
+
 
 ## Installation
 
