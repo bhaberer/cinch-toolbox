@@ -64,8 +64,9 @@ module Cinch
       shortener.get("forward.php?format=simple&shorturl=#{url}").body
     end
 
-
     # Truncate a given block of text, used for making sure the bot doesn't flood.
+    # @param [String] text The block of text to check.
+    # @param [Fixnum] length (250) length to which to constrain the block of text.
     def Toolbox.truncate(text, length = 250)
       text = text.gsub(/\n/, '  ')
       if text.length > length
@@ -76,6 +77,7 @@ module Cinch
 
     # Used to render a period of time in a uniform string.
     # There is probably a much better way to do this, so FIXME
+    # @param [Fixnum] secs Number of seconds to render into a string.
     def Toolbox.time_format(secs)
       data = { :days  => (secs / 86400).floor,
                :hours => ((secs % 86400) / 3600).floor,
