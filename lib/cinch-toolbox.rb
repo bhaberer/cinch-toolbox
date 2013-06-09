@@ -21,7 +21,7 @@ module Cinch
       else
         return url.send(mode.to_sym, selector).first.content
       end
-    rescue SocketError
+    rescue SocketError, RuntimeError
       # Rescue for any kind of network sillyness
       return nil
     end

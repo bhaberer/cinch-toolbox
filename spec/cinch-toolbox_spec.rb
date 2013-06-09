@@ -31,6 +31,21 @@ describe Cinch::Toolbox do
       Cinch::Toolbox.get_html_element('http://example.com/', "//div/div[3]", :xpath).
         should be_nil
     end
+
+    it 'should return nil if there is a problem finding the site' do
+      Cinch::Toolbox.get_html_element('http://baddurl.com/', '.foo2', :css).
+        should be_nil
+    end
+
+    it 'should return the page title if there is a http => https trasition' do
+      Cinch::Toolbox.get_html_element('http://github.com/bhaberer/', 'title', :css).
+        should include 'bhaberer (Brian Haberer)'
+    end
+
+    it 'should return nil if there is a https => http trasition' do
+      Cinch::Toolbox.get_html_element('https://www.amazon.com/', 'title', :css).
+        should be_nil
+    end
   end
 
   describe 'the get_page_title method' do
