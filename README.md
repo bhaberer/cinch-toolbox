@@ -1,5 +1,11 @@
 # Cinch Toolbox
 
+[![Gem Version](https://badge.fury.io/rb/cinch-toolbox.png)](http://badge.fury.io/rb/cinch-dicebag)
+[![Dependency Status](https://gemnasium.com/bhaberer/cinch-toolbox.png)](https://gemnasium.com/bhaberer/cinch-dicebag)
+[![Build Status](https://travis-ci.org/bhaberer/cinch-toolbox.png?branch=master)](https://travis-ci.org/bhaberer/cinch-dicebag)
+[![Coverage Status](https://coveralls.io/repos/bhaberer/cinch-toolbox/badge.png?branch=master)](https://coveralls.io/r/bhaberer/cinch-dicebag?branch=master)
+[![Code Climate](https://codeclimate.com/github/bhaberer/cinch-toolbox.png)](https://codeclimate.com/github/bhaberer/cinch-dicebag)
+
 This is just a gem required fro many of my plugins, it facilitates a variety of mundane operations.
 
 * URL Shortening / Expansion.
