@@ -78,16 +78,16 @@ module Cinch
     # Used to render a period of time in a uniform string.
     # There is probably a much better way to do this, so FIXME
     # @param [Fixnum] secs Number of seconds to render into a string.
-    def Toolbox.time_format(secs, units = nil)
-      data = { :days  => (secs / 86400).floor,
-               :hours => ((secs % 86400) / 3600).floor,
-               :mins  => ((secs % 3600) / 60).floor,
-               :secs  => (secs % 60).floor }
+    def Toolbox.time_format(secs, units = nil, format = :long)
+      data = { :days    => (secs / 86400).floor,
+               :hours   => ((secs % 86400) / 3600).floor,
+               :mins    => ((secs % 3600) / 60).floor,
+               :seconds => (secs % 60).floor }
       string = []
       data.keys.map do |period|
         if period == :secs || !(data[period].zero? && string.empty?)
           if units.nil? || units.include?(period)
-            string << "#{data[period]} #{period}"
+            string << "#{data[period]}#{format == :long ? " #{period}" : period.slice(0)}"
           end
         end
       end

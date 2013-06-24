@@ -111,7 +111,17 @@ describe Cinch::Toolbox do
   describe 'time parseing' do
     it 'should parse seconds into a user friendly string' do
       Cinch::Toolbox.time_format(126).
-        should == '2m 6s'
+        should == '2 mins, 6 seconds'
+    end
+
+    it 'should allow users to limit the kinds of units returned' do
+      Cinch::Toolbox.time_format(126020, [:days, :seconds]).
+        should == '1 days, 20 seconds'
+    end
+
+    it 'should allow users to specify short form' do
+      Cinch::Toolbox.time_format(126000, [:days], :short).
+        should == '1d'
     end
   end
 end
