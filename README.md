@@ -24,7 +24,7 @@ Note that this *only* honors redirection requests from HTTP => HTTPS and *not* H
 
 Add this line to your application's Gemfile:
 
-    gem 'cinch-toolbox'
+    gem 'cinch/toolbox'
 
 And then execute:
 
@@ -44,7 +44,13 @@ Or install it yourself as:
 
 ## Changelog
 
-* 1.0.0
+* 1.0.2
+    * Reorged the file layout a bit to be more canonical (`require cinch/toolbox` now instead
+        of `require cinch-toolbox`.
+    * Fixed corner case where `get_html_element` failed with xhtml selectors.
+* 1.0.1
+    * Updated how `time_format` functions.
+* 1.0.0 (
     * Added tests!
     * Added docs!
     * Cleaned up code in `Toolbox.get_html_element` to be more error resistant

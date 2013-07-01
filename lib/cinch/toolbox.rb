@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'cinch-toolbox/version'
+require 'cinch/toolbox/version'
 require 'open-uri'
 require 'patron'
 require 'nokogiri'
@@ -16,10 +16,13 @@ module Cinch
       # Make sure the URL is legit
       url = URI::extract(url, ["http", "https"]).first
       url = Nokogiri::HTML(open(url))
-      if url.send(mode.to_sym, selector).empty?
+
+      content = url.send(mode.to_sym, selector)
+
+      if content.empty?
         return nil
       else
-        return url.send(mode.to_sym, selector).first.content
+        return content.first.content
       end
     rescue SocketError, RuntimeError
       # Rescue for any kind of network sillyness
