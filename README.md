@@ -45,11 +45,12 @@ Or install it yourself as:
 ## Changelog
 
 * 1.0.2
-    * Reorged the file layout a bit to be more canonical (`require cinch/toolbox` now instead
-        of `require cinch-toolbox`.
-    * Fixed corner case where `get_html_element` failed with xhtml selectors.
+    * [Enhancement] Reorged the file layout a bit to be more canonical (`require cinch/toolbox`
+        now instead of `require cinch-toolbox`.
+    * [Enhancement] Added support for retrieving the full contents of a html element by passing
+        `:css_full` or `:xpath_full` to the `Cinch::Toolbox.get_html_element` method.
 * 1.0.1
-    * Updated how `time_format` functions.
+    * [Refactor] Updated how `time_format` functions.
 * 1.0.0 (
     * Added tests!
     * Added docs!

@@ -10,20 +10,25 @@ module Cinch
     # Get an element of the supplied website
     # @param [String] url The url to access.
     # @param [String] selector The the selector to try an acquire on the page.
-    # @param [String] mode (:css) Set his to css or xpath based on the type of selector.
+    # @param [String] mode (:css) Set this to the kind of selection you want to do.
+    # @option [String] :mode :css Fetch just the text content at the css selector.
+    # @option [String] :mode :css_full Fetch the markup and text content at the css selector.
+    # @option [String] :mode :xpath Fetch just the text content at the xpath selector.
+    # @option [String] :mode :xpath_full Fetch the markup and text at the xpath selector.
     # @return [String] The content ofg the Element or Nil if the element could not be found.
     def Toolbox.get_html_element(url, selector, mode = :css)
       # Make sure the URL is legit
       url = URI::extract(url, ["http", "https"]).first
       url = Nokogiri::HTML(open(url))
 
-      content = url.send(mode.to_sym, selector)
-
-      if content.empty?
-        return nil
-      else
-        return content.first.content
-      end
+      content = case mode
+                when :css, :xpath
+                  page = url.send(mode.to_sym, selector)
+                  page.first.content unless page.first.nil?
+                when :css_full, :xpath_full
+                  url.send("at_#{mode.to_s.gsub(/_full/, '')}", selector).to_html
+                end
+      return content
     rescue SocketError, RuntimeError
       # Rescue for any kind of network sillyness
       return nil
@@ -88,7 +93,7 @@ module Cinch
                :seconds => (secs % 60).floor }
       string = []
       data.keys.map do |period|
-        if period == :secs || !(data[period].zero? && string.empty?)
+        if period == :seconds || !(data[period].zero? && string.empty?)
           if units.nil? || units.include?(period)
             string << "#{data[period]}#{format == :long ? " #{period}" : period.slice(0)}"
           end

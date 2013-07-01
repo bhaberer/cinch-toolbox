@@ -1,4 +1,4 @@
 require 'coveralls'
 Coveralls.wear!
-require 'cinch-toolbox'
+require 'cinch/toolbox'
 

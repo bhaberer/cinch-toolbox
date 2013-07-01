@@ -5,11 +5,9 @@ describe Cinch::Toolbox do
 
   describe 'the get_html_element method' do
     before(:all) do
+      @fake_web_html = "<div id=\"a1\" class=\"top\">\n<div class=\"foo\">Bar</div>\n<div id=\"foo1\">Baz</div>\n</div>"
       FakeWeb.register_uri( :get, "http://example.com/",
-                            :body => "<div id='a1' class='top'>
-                                        <div class='foo'>Bar</div>
-                                        <div id='foo1'>Baz</div>
-                                      </div>")
+                            :body => @fake_web_html)
     end
 
     it 'should return a string with contents of a css selector of a web page' do
@@ -17,9 +15,19 @@ describe Cinch::Toolbox do
         should == 'Bar'
     end
 
+    it 'should return a string with full markup of a css selector of a web page' do
+      Cinch::Toolbox.get_html_element('http://example.com/', '.top', :css_full).
+        should == @fake_web_html
+    end
+
     it 'should return a string with contents of a xpath selector of a web page' do
       Cinch::Toolbox.get_html_element('http://example.com/', "//div/div[1]", :xpath).
         should == 'Bar'
+    end
+
+    it 'should return a string with contents of a xpath selector of a web page' do
+      Cinch::Toolbox.get_html_element('http://example.com/', "//div[@id='a1']", :xpath_full).
+        should == @fake_web_html
     end
 
     it 'should return nil if the css element does not exist' do
