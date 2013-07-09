@@ -21,7 +21,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency  'rspec'
   gem.add_development_dependency  'coveralls'
   gem.add_development_dependency  'fakeweb',    '~> 1.3'
+  gem.add_development_dependency  'cinch-test'
 
-  gem.add_dependency              'nokogiri',   '~> 1.5.9'
+  gem.add_dependency              'nokogiri',   '~> 1.6.0'
   gem.add_dependency              'patron',     '~> 0.4.18'
 end

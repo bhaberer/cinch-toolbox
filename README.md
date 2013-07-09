@@ -44,6 +44,9 @@ Or install it yourself as:
 
 ## Changelog
 
+* 1.0.3
+    * [Enhancement] Added `Toolbox.sent_via_private_message?` for restricting commands to use in
+        channel only
 * 1.0.2
     * [Enhancement] Reorged the file layout a bit to be more canonical (`require cinch/toolbox`
         now instead of `require cinch-toolbox`.

@@ -83,6 +83,14 @@ module Cinch
       return text
     end
 
+    # Simple check to make sure people are using a command via the main channel for plugins that 
+    #   require a channel for context.
+    def Toolbox.sent_via_private_message?(m, error = "You must use that command in the main channel.")
+      return false unless m.channel.nil?
+      m.user.msg error
+      return true
+    end
+
     # Used to render a period of time in a uniform string.
     # There is probably a much better way to do this, so FIXME
     # @param [Fixnum] secs Number of seconds to render into a string.
