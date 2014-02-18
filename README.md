@@ -1,4 +1,4 @@
-# Cinch Toolbox
+# Cinch::Toolbox
 
 [![Gem Version](https://badge.fury.io/rb/cinch-toolbox.png)](http://badge.fury.io/rb/cinch-toolbox)
 [![Dependency Status](https://gemnasium.com/bhaberer/cinch-toolbox.png)](https://gemnasium.com/bhaberer/cinch-toolbox)
