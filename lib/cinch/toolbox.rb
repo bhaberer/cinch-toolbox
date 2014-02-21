@@ -3,6 +3,8 @@ require 'cinch/toolbox/version'
 require 'open-uri'
 require 'patron'
 require 'nokogiri'
+require 'net/http'
+require 'uri'
 
 module Cinch
   # Module for conveniance methods used in multiple Cinch plugins.
