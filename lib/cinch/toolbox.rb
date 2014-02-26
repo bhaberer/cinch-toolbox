@@ -36,7 +36,7 @@ module Cinch
         url.send("at_#{mode.to_s.gsub(/_full/, '')}", selector).to_html
       end
     # Rescue for any kind of network sillyness
-    rescue SocketError, RuntimeError, HTTPError
+    rescue SocketError, RuntimeError, Net::HTTPError
       nil
     end
 
