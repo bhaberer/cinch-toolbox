@@ -66,6 +66,9 @@ module Cinch
       uri = URI.parse("http://is.gd/create.php?format=simple&url=#{url}")
       shortened = Net::HTTP.get(uri)
       shortened if shortened.match(%r(https?://is.gd/))
+    rescue Errno::ETIMEDOUT
+      # if the URL shortener is down, handle it. 
+      url
     end
 
     # Expand a previously shortened URL via the configured shortener
