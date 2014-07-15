@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'cinch/toolbox/version'
 require 'open-uri'
-require 'patron'
 require 'nokogiri'
 require 'net/http'
 require 'uri'

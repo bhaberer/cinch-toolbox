@@ -25,5 +25,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency  'cinch-test'
 
   gem.add_dependency              'nokogiri',   '~> 1.6.0'
-  gem.add_dependency              'patron',     '~> 0.4.18'
 end
