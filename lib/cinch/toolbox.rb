@@ -64,9 +64,9 @@ module Cinch
       return url if url.length < 45
       uri = URI.parse("http://is.gd/create.php?format=simple&url=#{url}")
       shortened = Net::HTTP.get(uri)
-      shortened if shortened.match(%r(https?://is.gd/))
+      shortened if shortened.match(%r{https?://is.gd/})
     rescue Errno::ETIMEDOUT
-      # if the URL shortener is down, handle it. 
+      # if the URL shortener is down, handle it.
       url
     end
 
@@ -76,7 +76,7 @@ module Cinch
     def self.expand(url)
       uri = URI.parse("http://is.gd/forward.php?format=simple&shorturl=#{url}")
       unshortened = Net::HTTP.get(uri)
-      unshortened unless unshortened.match(%r(https?://is.gd/))
+      unshortened unless unshortened.match(%r{https?://is.gd/})
     end
 
     # Truncate a given block of text, used for making sure the bot doesn't
@@ -150,10 +150,9 @@ module Cinch
     def self.parse_time_hash(times, format)
       string = []
       times.each_pair do |period, time|
-        if period == :seconds || !(time.zero? && string.empty?)
-          string << [time, format == :long ? " #{period}" : period.slice(0)]
-                      .join
-        end
+        next unless period == :seconds || !(time.zero? && string.empty?)
+
+        string << [time, format == :long ? " #{period}" : period.slice(0)].join
       end
       string.join(', ')
     end
