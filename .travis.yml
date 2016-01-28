@@ -2,6 +2,9 @@ addons:
     code_climate:
         repo_token: 09ffc7d4f0f2912b317e719d8f95fd14fcfa3a0a117a24335a33c81d5013c8e5
 language: ruby
+before_install:
+  - gem update --system
+  - gem update bundler
 env:
   global:
     - "JRUBY_OPTS=-Xcext.enabled=true"
