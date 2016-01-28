@@ -2,6 +2,6 @@
 module Cinch
   # Version Info
   module Toolbox
-    VERSION = '1.1.5'
+    VERSION = '1.1.6'
   end
 end
